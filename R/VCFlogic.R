@@ -10,15 +10,15 @@
 #' @examples
 vcf_read = function(vcf_filepath){
   vcf = readr::read_tsv(vcf_filepath, comment = "##")
+  vcf = dplyr::filter(vcf,!grepl('AF=0;', INFO))
   vcf$rowid = 1:nrow(vcf)
   vcf = dplyr::group_by(vcf, rowid)
   vcf = dplyr::group_split(vcf)
   return(vcf)
 }
 
-(probs[2])
-vcfs = lapply(vcfs[1:10],vcf_read)
-
+vcfs = lapply(vcfs[251:255],vcf_read)
+lengths(vcfs)
 lapply(vcfs[1:10], parse_FUNC)
 lapply(vcfs, parse_FUNC)
 
@@ -82,6 +82,7 @@ extract_format_values = function(vcf_row){
 }
 
 combine_function_calls = function(vcfrow){
+  if(!grepl('AF=0', vcfrow$INFO)){
   if(!grepl('SVTYPE=CNV', vcfrow$INFO)){
     format_vals = extract_format_values(vcfrow)
     std_cols = standard_columns(vcfrow)
@@ -89,9 +90,9 @@ combine_function_calls = function(vcfrow){
     first_join = dplyr::full_join(std_cols, format_vals)
     second_join = dplyr::full_join(first_join, info_vals)
     return(second_join)
+    }
   }
 }
-
 
 extract_format_values(vcfs[[1]][[13]])
 standard_columns(vcfs[[1]][[13]])
@@ -99,15 +100,21 @@ combine_rowid(vcfs[[1]][[13]])
 
 
 colnames(complete)
-variant_display = function(combined_output){
-  output = dplyr::select(combined_output, gene, transcript, chr, coding,protein,exon,location, AF)
+variant_table = function(combined_output){
+  output = dplyr::select(combined_output, gene, transcript, chr, coding,protein,exon,location, AF, rowid)
   return(output)
 }
 
 
+metric_table = function(combined_output){
+  output = dplyr::select(combined_output, gene, coding,protein, AF,QUAL, GQ:VCFREF, rowid)
+  return(output)
+}
+vcfs[[1]]
 
-complete = dplyr::bind_rows(lapply(vcfs[[10]], combine_function_calls)) |> dplyr::relocate(gene)
+
+complete = dplyr::bind_rows(lapply(vcfs[[1]], combine_function_calls)) |> dplyr::relocate(gene)
+
 colnames(complete)[2] = 'chr'
-variant_display(complete)
-
-
+variant_table(complete)
+metric_table(complete)
