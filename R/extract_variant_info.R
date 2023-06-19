@@ -36,15 +36,5 @@ vcf_to_info_row = function(filepath){
 
 
 
-extract_FUNC = function(info_string){
-  #FUNC = stringr::str_extract(info_string, pattern = "(?<=FUNC=\\[\\{).*(?=\\}\\])")
-  FUNC = gsub("'", '', info_string)
-  FUNC = gsub("\\{", '', FUNC)
-  FUNC = gsub("\\}", '', FUNC)
-  FUNC = stringr::str_split(FUNC, pattern = ",")[[1]]
-  df = data.frame(parameter = FUNC, value = NA)
-  df = tidyr::separate(df, col = parameter, into = c("parameter", 'value'), sep = ":")
-  df = tidyr::pivot_wider(df, names_from = parameter, values_from = value)
-  return(df)
-}
+
 

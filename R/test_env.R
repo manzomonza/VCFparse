@@ -1,11 +1,11 @@
 ## FAFO
 
-vcfs = list.files(path = "VCF", recursive = TRUE, pattern = '.*.vcf', full.names = TRUE)
-vcfs = grep("SmallVariants", vcfs, invert = TRUE, value = TRUE)
-vcfs = grep("Fusions", vcfs, invert = TRUE, value = TRUE)
-vcfs = grep("RNA", vcfs, invert = TRUE, value = TRUE)
-vcfs = grep("Non-Filtered", vcfs, invert = TRUE, value = TRUE)
-vcfs = grep("Filtered", vcfs, invert = FALSE, value = TRUE)
+vcffiles = list.files(path = "VCF", recursive = TRUE, pattern = '.*.vcf', full.names = TRUE)
+vcffiles = grep("SmallVariants", vcffiles, invert = TRUE, value = TRUE)
+vcffiles = grep("Fusions", vcffiles, invert = TRUE, value = TRUE)
+vcffiles = grep("RNA", vcffiles, invert = TRUE, value = TRUE)
+vcffiles = grep("Non-Filtered", vcffiles, invert = TRUE, value = TRUE)
+vcffiles = grep("Filtered", vcffiles, invert = FALSE, value = TRUE)
 
 
 testfile = grep("Y676",vcfs, value = TRUE)
