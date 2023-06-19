@@ -11,4 +11,3 @@ i = 14
 interprets[[i]]$protein
 
 sapply(interprets[[i]]$protein, amino_acid_conversion_three_to_one)
-
