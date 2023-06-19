@@ -39,14 +39,23 @@ interpretation_table = function(combined_output){
 }
 
 
-
+#' Creates output tables and directory by individual function calls
+#'
+#' @param combined_output
+#' @param filepath
+#'
+#' @return
+#' @export
+#'
+#' @examples
 write_output_tables = function(combined_output, filepath){
+  ## Create output dir first
   dirpath = dirname(filename)
   dirpath = paste0(dirpath, '/watchdog_v2_output')
   dir.create(dirpath)
-
+  ## write out parsed tables
+  readr::write_tsv(interpretation_table(combined_output), file = "interpretation_table.tsv")
+  readr::write_tsv(metric_table(combined_output), file = "variant_metrics_table.tsv")
+  readr::write_tsv(variant_table(combined_output), file = "simplified_variant_table.tsv")
   }
 
-
-
-}
