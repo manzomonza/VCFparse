@@ -17,19 +17,15 @@ aminocode['dup']  <- "dup"
 amino_acid_conversion_three_to_one <- function(amino_acid_change_entry){
   amino_acid_change_parse = amino_acid_change_entry
   if(!is.na(amino_acid_change_entry) & !grepl("p\\.\\?", amino_acid_change_entry) ){
-    if(oneORthree_code(amino_acid_change_entry) == "three"){
-      for(i in seq_along(aminocode)){
-        amino_acid_change_parse <- gsub(aminocode[i], names(aminocode)[i], amino_acid_change_parse, ignore.case = FALSE)
-      }
-      if(!grepl("p.", amino_acid_change_parse)){
-        amino_acid_change_parse <- paste0("p.", amino_acid_change_parse)
-      }
-      return(amino_acid_change_parse)
-    }else{
-      return(amino_acid_change_entry)
+    for(i in seq_along(aminocode)){
+      amino_acid_change_parse <- gsub(aminocode[i], names(aminocode)[i], amino_acid_change_parse, ignore.case = FALSE)
     }
+    if(!grepl("p.", amino_acid_change_parse)){
+      amino_acid_change_parse <- paste0("p.", amino_acid_change_parse)
+    }
+    return(amino_acid_change_parse)
   }else{
-    return(NA)
+    return(amino_acid_change_entry)
   }
 }
 

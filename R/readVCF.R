@@ -10,8 +10,10 @@
 read_vcf = function(vcf_filepath){
   vcf = readr::read_tsv(vcf_filepath, comment = "##")
   vcf = dplyr::filter(vcf,!grepl('AF=0;', INFO) & FILTER != 'FAIL')
-  vcf$rowid = 1:nrow(vcf)
-  vcf = dplyr::group_by(vcf, rowid)
-  vcf = dplyr::group_split(vcf)
-  return(vcf)
+  if(nrow(vcf)){
+    vcf$rowid = 1:nrow(vcf)
+    vcf = dplyr::group_by(vcf, rowid)
+    vcf = dplyr::group_split(vcf)
+    return(vcf)
+  }
 }

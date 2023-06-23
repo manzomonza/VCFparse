@@ -2,3 +2,5 @@
 .DS_Store
 VCF/*
 .Rproj.user
+*RDS
+testing/

@@ -50,7 +50,7 @@ interpretation_table = function(combined_output){
 #' @examples
 write_output_tables = function(combined_output, filepath){
   ## Create output dir first
-  dirpath = dirname(filename)
+  dirpath = dirname(filepath)
   dirpath = paste0(dirpath, '/watchdog_v2_output')
   dir.create(dirpath)
   ## write out parsed tables
