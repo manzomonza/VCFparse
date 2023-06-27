@@ -40,7 +40,8 @@ extract_gene_parameters = function(info_string){
 #' @examples
 convert_entries_to_table = function(info_string){
   gene_strings =  gene_extract(info_string)
-  roi = dplyr::bind_rows(lapply(gene_strings, function(x) lapply(x, extract_gene_parameters))) |> as.data.frame()
+  roi = dplyr::bind_rows(lapply(gene_strings, function(x) lapply(x, extract_gene_parameters)))
+  roi = as.data.frame(roi)
   return(roi)
 }
 

@@ -20,8 +20,8 @@ variant_table = function(combined_output){
 #'
 #' @examples
 metric_table = function(combined_output){
-  output = dplyr::select(combined_output, rowid, gene, coding,protein, AF,QUAL, GQ:VCFREF)
-  return(output)
+  output = dplyr::select(combined_output, rowid, gene, coding,protein, AF,QUAL)
+  return(combined_output)
 }
 
 

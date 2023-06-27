@@ -14,8 +14,6 @@ AF_based_index = function(AF_char_string){
   return(vec_index)
 }
 
-
-
 #' Title
 #'
 #' @param char_string
@@ -51,7 +49,6 @@ index_all_cols = function(datadf, index_pos){
   return(res)
 }
 
-
 #' Reformat Info
 #'
 #' @param infostring
@@ -71,5 +68,7 @@ reformat_INFO = function(infostring){
   indeces = AF_based_index(df_list$dataf$AF)
   data_row = dplyr::bind_rows(lapply(indeces, function(x) index_all_cols(df_list$dataf, index_pos = x)))
   data_reshaped = cbind(df_list$FUNC, data_row)
+  data_reshaped = dplyr::relocate(data_reshaped, gene, coding, protein, location, contains("Ref"),
+                                  contains("Alt"), contains("orig"), contains("normalized"))
   return(data_reshaped)
 }
