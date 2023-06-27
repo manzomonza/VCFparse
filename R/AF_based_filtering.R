@@ -11,6 +11,9 @@
 AF_based_index = function(AF_char_string){
   split_string = as.numeric(stringr::str_split_1(AF_char_string, pattern = ','))
   vec_index = which(split_string != 0)
+  if( identical(vec_index, integer(0))){
+    return(NA)
+  }
   return(vec_index)
 }
 
