@@ -9,7 +9,7 @@
 #' @examples
 read_vcf = function(vcf_filepath){
   vcf = readr::read_tsv(vcf_filepath, comment = "##")
-  vcf = check_non_zero_AF(vcf)
+  vcf = vcf[which(unlist(lapply(vcf$INFO, check_non_zero_AF))),]
   vcf = dplyr::filter(vcf,FILTER != 'FAIL')
   if(nrow(vcf)){
     vcf$rowid = 1:nrow(vcf)

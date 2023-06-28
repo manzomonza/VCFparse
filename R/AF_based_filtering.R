@@ -17,6 +17,28 @@ AF_based_index = function(AF_char_string){
   return(vec_index)
 }
 
+
+#' Check AF entries in vcf INFO entries
+#'
+#' @param vcfinfo
+#'
+#' @return
+#' @export
+#'
+#' @examples
+check_non_zero_AF = function(vcfinfo){
+  # return true if AF is not only 0 entries
+  afstring = stringr::str_extract(vcfinfo, pattern = "^AF.*?;")
+  if(is.na(afstring)){
+    return(TRUE)
+  }
+  afstring = gsub("AF=|;",'', afstring)
+  af_vec = stringr::str_split_1(afstring, pattern = ',')
+  equal_nonzero = !all(af_vec == "0")
+  return(equal_nonzero)
+}
+
+
 #' Title
 #'
 #' @param char_string
