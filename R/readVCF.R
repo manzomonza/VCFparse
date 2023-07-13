@@ -19,4 +19,19 @@ read_vcf = function(vcf_filepath){
   }
 }
 
+#' Uses VariantAnnotation package to read in VCF as GRanges object
+#'
+#' @param vcffilepath
+#'
+#' @return
+#' @export
+#'
+#' @examples
+readVCF = function(vcffilepath){
+  vavcf = VariantAnnotation::readVcfAsVRanges(vcffilepath)
+  vavcf = dplyr::filter(tibble::as_tibble(vavcf), AF !=0 | alt == "<CNV>")
+  vavcf$rowid = 1:nrow(vavcf)
+  return(vavcf)
+}
+
 

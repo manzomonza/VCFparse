@@ -39,7 +39,7 @@ check_non_zero_AF = function(vcfinfo){
 }
 
 
-#' Title
+#' Extract comma separated values with specified indeces
 #'
 #' @param char_string
 #' @param vector_indeces
@@ -74,26 +74,3 @@ index_all_cols = function(datadf, index_pos){
   return(res)
 }
 
-#' Reformat Info
-#'
-#' @param infostring
-#'
-#' @return
-#' @export
-#'
-#' @examples
-reformat_INFO = function(infostring){
-  df = data.frame(entries = unlist(stringr::str_split(infostring, pattern = ";")))
-  df$entries = gsub("'",'', df$entries)
-  df_list = list(dataf = data.frame(entries =df[-grep("FUNC=", df$entries),]),
-                 FUNC = df[grep("FUNC=", df$entries),])
-  df_list$dataf = tidyr::separate(df_list$dataf, col = 'entries', into = c("parameter","value"), sep = "=")
-  df_list$dataf = tidyr::pivot_wider(df_list$dataf, names_from = parameter, values_from = value)
-  df_list$FUNC = convert_entries_to_table(df_list$FUNC)
-  indeces = AF_based_index(df_list$dataf$AF)
-  data_row = dplyr::bind_rows(lapply(indeces, function(x) index_all_cols(df_list$dataf, index_pos = x)))
-  data_reshaped = cbind(df_list$FUNC, data_row)
-  data_reshaped = dplyr::relocate(data_reshaped, gene, coding, protein, location, contains("Ref"),
-                                  contains("Alt"), contains("orig"), contains("normalized"))
-  return(data_reshaped)
-}

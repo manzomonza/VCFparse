@@ -2,7 +2,7 @@
 % Please edit documentation in R/AF_based_filtering.R
 \name{return_filtered_vectors}
 \alias{return_filtered_vectors}
-\title{Title}
+\title{Extract comma separated values with specified indeces}
 \usage{
 return_filtered_vectors(char_string, vector_indeces)
 }
@@ -10,5 +10,5 @@ return_filtered_vectors(char_string, vector_indeces)
 \item{vector_indeces}{}
 }
 \description{
-Title
+Extract comma separated values with specified indeces
 }

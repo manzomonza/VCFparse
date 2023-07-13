@@ -71,6 +71,14 @@ extract_format_values = function(vcf_row){
   return(df)
 }
 
+#' Combines function call
+#'
+#' @param vcfrow
+#'
+#' @return
+#' @export
+#'
+#' @examples
 combine_function_calls = function(vcfrow){
   if(!grepl('AF=0;', vcfrow$INFO)){
     if(!grepl('SVTYPE=CNV', vcfrow$INFO)){
