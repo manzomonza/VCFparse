@@ -37,17 +37,6 @@ pull_comment_value = function(comment_section, stringoi){
   return(value)
 }
 
-## IR_info
-
-## sample info
-
-
-## seq QC
-pull_comment_value(cm, stringoi = 'percent_aligned_reads')
-pull_comment_value(cm, stringoi = 'percent_non_zero_amplicons')
-pull_comment_value(cm, stringoi = 'total_read_count')
-pull_comment_value(cm, stringoi = 'median_reads_per_amplicon')
-pull_comment_value(cm, stringoi = 'mapd')
 
 #' Aggregate required information from VCF comment section
 #'
@@ -67,7 +56,14 @@ aggregate_META_information = function(comment_section){
 
                    SampleInfo = list(disease = pull_comment_value(comment_section, stringoi = 'sampleDiseaseType'),
                                      tumor_cellularity_manual = pull_comment_value(comment_section, stringoi = 'manually_input_percent_tumor_cellularity'),
-                                     tumor_cellularity_calculated = pull_comment_value(comment_section, stringoi = 'calculated_tumor_cellularity')))
+                                     tumor_cellularity_calculated = pull_comment_value(comment_section, stringoi = 'calculated_tumor_cellularity')),
+
+                   SeqQC = list(percent_aligned_reads = pull_comment_value(comment_section, stringoi = 'percent_aligned_reads'),
+                                percent_non_zero_amplicons = pull_comment_value(comment_section, stringoi = 'percent_non_zero_amplicons'),
+                                total_read_count = pull_comment_value(comment_section, stringoi = 'total_read_count'),
+                                median_reads_per_amplicon = pull_comment_value(comment_section, stringoi = 'median_reads_per_amplicon'),
+                                MAPD = pull_comment_value(comment_section, stringoi = 'mapd')
+                   ))
   return(meta_info)
 }
 
