@@ -29,7 +29,7 @@ vcf_comment_section = function(vcfpath){
 #' @examples
 pull_comment_value = function(comment_section, stringoi){
   cm = dplyr::filter(comment_section, parameter == stringoi)
-  if(nrow(cm == 1)){
+  if(nrow(cm) == 1){
     value = cm$value
   }else{
     value = NA
@@ -63,8 +63,8 @@ aggregate_META_information = function(comment_section){
                                 total_read_count = pull_comment_value(comment_section, stringoi = 'total_read_count'),
                                 median_reads_per_amplicon = pull_comment_value(comment_section, stringoi = 'median_reads_per_amplicon'),
                                 MAPD = pull_comment_value(comment_section, stringoi = 'mapd'),
-                                deamination_metric = pull_comment_value(comment_section, stringoi = 'deamination_metric')
-                   ))
+                                deamination_metric = pull_comment_value(comment_section, stringoi = 'deamination_metric'))
+                   )
   return(meta_info)
 }
 
