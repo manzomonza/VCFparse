@@ -29,7 +29,8 @@ read_vcf = function(vcf_filepath){
 #' @examples
 readVCF = function(vcffilepath){
   vavcf = VariantAnnotation::readVcfAsVRanges(vcffilepath)
-  vavcf = dplyr::filter(tibble::as_tibble(vavcf), AF !=0 | alt == "<CNV>")
+  vavcf = tibble::as_tibble(vavcf)
+  vavcf = dplyr::filter(vavcf, AF !=0 | alt == "<CNV>")
   vavcf$rowid = 1:nrow(vavcf)
   return(vavcf)
 }

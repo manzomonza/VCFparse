@@ -34,4 +34,3 @@ combine_and_split = function(vcf_element_FUNC){
   multi_entries = list(lapply(multi_entries, function(x) unlist(stringr::str_split(x, pattern = ","))))
   return(multi_entries)
 }
-
