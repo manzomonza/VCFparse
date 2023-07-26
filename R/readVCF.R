@@ -10,7 +10,7 @@
 read_vcf = function(vcf_filepath){
   vcf = readr::read_tsv(vcf_filepath, comment = "##")
   vcf = vcf[which(unlist(lapply(vcf$INFO, check_non_zero_AF))),]
-  vcf = dplyr::filter(vcf,FILTER != 'FAIL')
+  vcf = dplyr::filter(vcf, FILTER != 'FAIL')
   if(nrow(vcf)){
     vcf$rowid = 1:nrow(vcf)
     vcf = dplyr::group_by(vcf, rowid)

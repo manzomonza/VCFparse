@@ -72,6 +72,15 @@ aggregate_META_information = function(comment_section){
 }
 
 
+#' WRITE OUT meta information from VCF comment section to yaml
+#'
+#' @param meta_information
+#' @param basedir
+#'
+#' @return
+#' @export
+#'
+#' @examples
 write_out_META_information = function(meta_information, basedir){
   filestring = paste0(basedir,'/parsed_output/meta_information.yaml')
   out = as.yaml(meta_information)
