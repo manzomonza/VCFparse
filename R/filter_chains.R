@@ -13,5 +13,5 @@ panel_detection = function(meta_info){
 }
 
 
-meta_info = aggregate_META_information(cm)
-panel_detection(meta_info)
+#meta_info = aggregate_META_information(cm)
+#panel_detection(meta_info)
