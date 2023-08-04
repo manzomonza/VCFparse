@@ -30,7 +30,9 @@ read_vcf = function(vcf_filepath){
 readVCF = function(vcffilepath){
   vavcf = VariantAnnotation::readVcfAsVRanges(vcffilepath)
   vavcf = tibble::as_tibble(vavcf)
-  vavcf = dplyr::filter(vavcf, AF !=0 | alt == "<CNV>")
+  filter_column = readr::read_tsv(vcffilepath, comment = "##")$FILTER
+  vavcf$FILTER = filter_column
+  #vavcf = dplyr::filter(vavcf, AF !=0 | alt == "<CNV>")
   vavcf$rowid = 1:nrow(vavcf)
   return(vavcf)
 }
