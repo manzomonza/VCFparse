@@ -49,10 +49,16 @@ pull_comment_value = function(comment_section, stringoi){
 aggregate_META_information = function(comment_section){
   analysis_name = pull_comment_value(comment_section, stringoi = 'IonReporterAnalysisName')
   meta_info = list(IonReporter = list(AnalysisName = analysis_name,
+                                      fileDate = pull_comment_value(comment_section,
+                                                                    stringoi = 'fileDate'),
+                                      fileUTCtime = pull_comment_value(comment_section,
+                                                                       stringoi = 'fileUTCtime'),
                                       Software_version = pull_comment_value(comment_section,
                                                                             stringoi = 'IonReporterSoftwareVersion'),
                                       Export_version = pull_comment_value(comment_section,
                                                                           stringoi = 'IonReporterExportVersion'),
+                                      reference = pull_comment_value(comment_section,
+                                                                            stringoi = 'reference'),
                                       Workflow_version = pull_comment_value(comment_section,
                                                                             stringoi = 'IonReporterWorkflowVersion'),
                                       WorkflowName = pull_comment_value(comment_section,

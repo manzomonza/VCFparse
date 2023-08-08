@@ -29,8 +29,10 @@ filepaths = generate_paths(vcfpath = vcfpath)
 ## Read in file
 vcf = VCFparse::readVCF(vcfpath)
 # Parse FUNC
-vcf = combine_orig_with_FUNC_extracts(vcf)
-## remove double columns
+if(nrow(vcf) > 0){
+  vcf = combine_orig_with_FUNC_extracts(vcf)
+}
+  ## remove double columns
 vcf =  dplyr::select(vcf, -contains(".1"))
 # Generate complete table
 complete_file = dplyr::filter(vcf, variant_type != 'synonymous' & alt != "<CNV>")
