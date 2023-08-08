@@ -2,7 +2,7 @@
 % Please edit documentation in R/FUNC_multi_entries.R
 \name{combine_and_split}
 \alias{combine_and_split}
-\title{Collapses string and splits based on '}' in string.
+\title{Collapses string and splits based on curly brackets in string.
 Returns single list with splits as elements}
 \usage{
 combine_and_split(vcf_element_FUNC)
@@ -11,6 +11,6 @@ combine_and_split(vcf_element_FUNC)
 \item{vcf_element_FUNC}{}
 }
 \description{
-Collapses string and splits based on '}' in string.
+Collapses string and splits based on curly brackets in string.
 Returns single list with splits as elements
 }

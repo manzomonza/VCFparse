@@ -185,7 +185,7 @@ extract_FUNC_funct = function(character_vector){
 #' @export
 #'
 #' @examples
-combine_FUNC_extracts = function(character_vector){
+FUNC_extracts_to_df = function(character_vector){
   character_vector = clean_FUNC_character(character_vector)
   gene = extract_FUNC_gene(character_vector)
   transcript = extract_FUNC_transcript(character_vector)
@@ -197,7 +197,7 @@ combine_FUNC_extracts = function(character_vector){
   funct = extract_FUNC_funct(character_vector)
   res_df = data.frame(gene = gene,
                 transcript = transcript,
-                funct = funct,
+                variant_type = funct,
                 coding = coding,
                 protein = protein,
                 location = location,
