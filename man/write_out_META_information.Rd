@@ -4,7 +4,7 @@
 \alias{write_out_META_information}
 \title{WRITE OUT meta information from VCF comment section to yaml}
 \usage{
-write_out_META_information(meta_information, basedir)
+write_out_META_information(meta_information, filename)
 }
 \arguments{
 \item{basedir}{}

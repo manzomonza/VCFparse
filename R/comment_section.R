@@ -90,9 +90,10 @@ aggregate_META_information = function(comment_section){
 #' @export
 #'
 #' @examples
-write_out_META_information = function(meta_information, basedir){
-  filestring = paste0(basedir,'/parsed_output/meta_information.yaml')
+write_out_META_information = function(meta_information, filename){
   out = as.yaml(meta_information)
-  yaml::write_yaml(out, file = filestring)
+  yaml::write_yaml(out, file = filename)
 }
+
+
 
