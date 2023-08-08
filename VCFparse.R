@@ -28,7 +28,8 @@ filepaths = generate_paths(vcfpath = vcfpath)
 
 ## Read in file
 vcf = VCFparse::readVCF(vcfpath)
-
+vcf = combine_orig_with_FUNC_extracts(vcf)
+print(colnames(vcf))
 ## p
 complete_file = dplyr::filter(vcf, variant_type != 'synonymous' & alt != "<CNV>")
 cnv_rows = dplyr::filter(vcf, alt == "<CNV>")
