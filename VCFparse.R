@@ -36,7 +36,9 @@ vcf =  dplyr::select(vcf, -contains(".1"))
 complete_file = dplyr::filter(vcf, variant_type != 'synonymous' & alt != "<CNV>")
 # CNV entries only
 cnv_rows = dplyr::filter(vcf, alt == "<CNV>")
-cnv_rows = cnv_parse(cnv_rows)
+if(nrow(cnv_rows) > 0){
+  cnv_rows = cnv_parse(cnv_rows)
+}
 
 # COMMENT SECTION
 cm = vcf_comment_section(vcfpath = vcfpath )
