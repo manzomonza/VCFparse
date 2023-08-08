@@ -43,8 +43,13 @@ cm = vcf_comment_section(vcfpath = vcfpath )
 metainf = aggregate_META_information(cm)
 
 ## Output files
-readr::write_tsv(complete_file, file = filepaths$path_file_complete)
-readr::write_tsv(cnv_rows, file = filepaths$path_file_cnv)
+if(nrow(complete_file) > 0){
+  readr::write_tsv(complete_file, file = filepaths$path_file_complete)
+}
+if(nrow(cnv_rows) > 0){
+  readr::write_tsv(cnv_rows, file = filepaths$path_file_cnv)
+}
+
 write_out_META_information(metainf, filename = filepaths$path_file_info)
 
 
