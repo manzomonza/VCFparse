@@ -34,18 +34,20 @@ if(nrow(vcf) > 0){
 }
   ## remove double columns
 vcf =  dplyr::select(vcf, -contains(".1"))
-# Generate complete table
+# Generate tables
 vcf$variant_type = gsub("[^[:alnum:] ]", "", vcf$variant_type)
 vcf$protein = gsub("\\[|\\]", "", vcf$protein)
 vcf$transcript = gsub("\\[|\\]", "", vcf$transcript)
-table(vcf$protein)
-complete_file = dplyr::filter(vcf, variant_type != 'synonymous' & alt != "<CNV>")
+vcf = dplyr::relocate(vcf, rowid)
+
+# SNV table
+snv = dplyr::filter(vcf, variant_type != 'synonymous' & alt != "<CNV>")
 
 ## Remove zero AF entries, especially important for Genexus
-if("AF" %in% colnames(complete_file)){
-  complete_file = dplyr::filter(complete_file, AF != 0)
+if("AF" %in% colnames(snv)){
+  snv = dplyr::filter(snv, AF != 0)
 }
-
+snv = dplyr::relocate(snv, rowid)
 # tibble::as_tibble(vcf) |>
 #   dplyr::mutate_all(as.character) |>
 #   tidyr::pivot_longer(-gene)|>
@@ -69,6 +71,11 @@ metainf = aggregate_META_information(cm)
 if(nrow(complete_file) > 0){
   readr::write_tsv(complete_file, file = filepaths$path_file_complete)
 }
+
+if(nrow(snv) > 0){
+  readr::write_tsv(snv, file = filepaths$path_file_snv)
+}
+
 if(nrow(cnv_rows) > 0){
   readr::write_tsv(cnv_rows, file = filepaths$path_file_cnv)
 }
