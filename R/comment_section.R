@@ -48,7 +48,9 @@ pull_comment_value = function(comment_section, stringoi){
 #' @examples
 aggregate_META_information = function(comment_section){
   analysis_name = pull_comment_value(comment_section, stringoi = 'IonReporterAnalysisName')
-  meta_info = list(IonReporter = list(AnalysisName = analysis_name,
+
+  meta_info = list(vcf_path = pull_comment_value(comment_section, stringoi = 'path_vcf') ,
+                   IonReporter = list(AnalysisName = analysis_name,
                                       fileDate = pull_comment_value(comment_section,
                                                                     stringoi = 'fileDate'),
                                       fileUTCtime = pull_comment_value(comment_section,
