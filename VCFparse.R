@@ -34,11 +34,14 @@ if(nrow(vcf) > 0){
 }
   ## remove double columns
 vcf =  dplyr::select(vcf, -contains(".1"))
+vcf =  dplyr::select(vcf, -FUNC)
+
 # Generate tables
 vcf$variant_type = gsub("[^[:alnum:] ]", "", vcf$variant_type)
 vcf$protein = gsub("\\[|\\]", "", vcf$protein)
 vcf$transcript = gsub("\\[|\\]", "", vcf$transcript)
 vcf = dplyr::relocate(vcf, rowid)
+
 
 # SNV table
 snv = dplyr::filter(vcf, variant_type != 'synonymous' & alt != "<CNV>")
