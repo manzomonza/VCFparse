@@ -6,7 +6,7 @@ library(yaml)
 print("Packages: loaded")
 
 
-################################################# OPTPARSE #################################################
+################################################# OPTPARSE
 library(optparse)
 
 option_list = list(
@@ -22,9 +22,9 @@ print(opt$file)
 
 vcfpath = opt$file
 
-## Retrieve dirname
+## Retrieve dirname and generate filepaths
 filepaths = generate_paths(vcfpath = vcfpath)
-## Filepaths
+
 
 ## Read in file
 vcf = VCFparse::readVCF(vcfpath)
@@ -51,8 +51,8 @@ if("AF" %in% colnames(snv)){
   snv = dplyr::filter(snv, AF != 0)
 }
 snv = dplyr::relocate(snv, rowid)
-# tibble::as_tibble(vcf) |>
 #   dplyr::mutate_all(as.character) |>
+# tibble::as_tibble(vcf) |>
 #   tidyr::pivot_longer(-gene)|>
 #   dplyr::filter(grepl("\\[", value)) |>
 #   dplyr::filter(name != 'FUNC')
@@ -70,16 +70,28 @@ if(nrow(cnv_rows) > 0){
 cm = vcf_comment_section(vcfpath = vcfpath )
 metainf = aggregate_META_information(cm)
 
+
+attach_ID = function(dataframe_oi, sample_id, analysis_name){
+  dataframe_oi$sample_id = sample_id
+  dataframe_oi$analysis_name = analysis_name
+  return(dataframe_oi)
+}
+
+sample_id = metainf$vcf_path
+analysis_name = metainf$IonReporter$AnalysisName
 ## Output files
 if(nrow(vcf) > 0){
+  vcf = attach_ID(vcf, sample_id = sample_id, analysis_name = analysis_name)
   readr::write_tsv(vcf, file = filepaths$path_file_complete)
 }
 
 if(nrow(snv) > 0){
+  snv = attach_ID(snv, sample_id = sample_id, analysis_name = analysis_name)
   readr::write_tsv(snv, file = filepaths$path_file_snv)
 }
 
 if(nrow(cnv_rows) > 0){
+  cnv_rows = attach_ID(cnv_rows, sample_id = sample_id, analysis_name = analysis_name)
   readr::write_tsv(cnv_rows, file = filepaths$path_file_cnv)
 }
 
@@ -87,3 +99,8 @@ write_out_META_information(metainf, filename = filepaths$path_file_info)
 
 
 
+filepath_df = data.frame(file = names(filepaths),
+           filepath  = unlist(unname(filepaths)))
+
+filepath_df = attach_ID(filepath_df, sample_id = sample_id, analysis_name = analysis_name)
+readr::write_tsv(filepath_df, filepaths$path_filepath)

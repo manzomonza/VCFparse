@@ -22,10 +22,12 @@ generate_paths = function(vcfpath){
   path_file_complete = paste0(path_parsed_output, '/complete.txt')
   path_file_cnv = paste0(path_parsed_output, '/cnv.txt')
   path_file_fusions = paste0(path_parsed_output, '/fusions.txt')
+  filepaths = paste0(path_parsed_output, '/filepaths.txt')
   return(list(path_file_info = path_file_info,
               path_file_snv = path_file_snv,
               path_file_cnv = path_file_cnv,
               path_file_fusions = path_file_fusions,
-              path_file_complete = path_file_complete))
+              path_file_complete = path_file_complete,
+              path_filepath = filepaths))
 }
 

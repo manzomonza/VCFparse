@@ -48,8 +48,9 @@ pull_comment_value = function(comment_section, stringoi){
 #' @examples
 aggregate_META_information = function(comment_section){
   analysis_name = pull_comment_value(comment_section, stringoi = 'IonReporterAnalysisName')
-
-  meta_info = list(vcf_path = pull_comment_value(comment_section, stringoi = 'path_vcf') ,
+  vcf_path = pull_comment_value(comment_section, stringoi = 'path_vcf')
+  vcf_path = basename(vcf_path)
+  meta_info = list(vcf_path = vcf_path,
                    IonReporter = list(AnalysisName = analysis_name,
                                       fileDate = pull_comment_value(comment_section,
                                                                     stringoi = 'fileDate'),
