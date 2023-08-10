@@ -105,4 +105,19 @@ write_out_META_information = function(meta_information, filename){
 }
 
 
+#' Attach sample ID from original vcf path and analysis name to output dataframes.
+#' These entries serve as unique identifiers across tables
+#' @param dataframe_oi
+#' @param sample_id
+#' @param analysis_name
+#'
+#' @return
+#' @export
+#'
+#' @examples
+attach_ID = function(dataframe_oi, vcf_file, analysis_name){
+  dataframe_oi$vcf_file = vcf_file
+  dataframe_oi$analysis_name = analysis_name
+  return(dataframe_oi)
+}
 
