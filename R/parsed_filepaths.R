@@ -17,12 +17,12 @@ generate_paths = function(vcfpath){
   if(!dir.exists(path_parsed_output)){
     dir.create(path_parsed_output)
   }
-  path_file_info = paste0(path_parsed_output, '/file_info.yaml')
-  path_file_snv = paste0(path_parsed_output, '/snv.txt')
-  path_file_complete = paste0(path_parsed_output, '/complete.txt')
-  path_file_cnv = paste0(path_parsed_output, '/cnv.txt')
-  path_file_fusions = paste0(path_parsed_output, '/fusions.txt')
-  filepaths = paste0(path_parsed_output, '/filepaths.txt')
+  path_file_info = paste0(path_parsed_output, '/parsed_file_info.yaml')
+  path_file_snv = paste0(path_parsed_output, '/parsed_snv.tsv')
+  path_file_complete = paste0(path_parsed_output, '/parsed_complete.tsv')
+  path_file_cnv = paste0(path_parsed_output, '/parsed_cnv.tsv')
+  path_file_fusions = paste0(path_parsed_output, '/parsed_fusions.tsv')
+  filepaths = paste0(path_parsed_output, '/parsed_filepaths.tsv')
   return(list(path_file_info = path_file_info,
               path_file_snv = path_file_snv,
               path_file_cnv = path_file_cnv,

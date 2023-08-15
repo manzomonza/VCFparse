@@ -91,7 +91,7 @@ if(nrow(cnv_rows) > 0){
 
 write_out_META_information(metainf, filename = filepaths$path_file_info)
 
-filepaths = lapply(filepaths, function(x) ifelse(file.exists(x), x, NA))
+filepaths[1:5] = lapply(filepaths[1:5], function(x) ifelse(file.exists(x), x, NA))
 
 
 filepath_df = data.frame(file = names(filepaths),
