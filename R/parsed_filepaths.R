@@ -8,16 +8,12 @@
 #' @export
 #'
 #' @examples
-generate_paths = function(vcfpath){
-  analysis_name = aggregate_META_information(vcf_comment_section(vcfpath))
-  analysis_name = analysis_name$IonReporter$AnalysisName
-  analysis_name = stringr::str_remove(analysis_name, pattern=" ")
-  vcfdir = dirname(vcfpath)
-  path_parsed_output = paste0(vcfdir, "/", analysis_name, "_parsed_output")
+parsed_filepaths = function(output_path){
+  path_parsed_output = paste0(output_path, "/parsed_output")
   if(!dir.exists(path_parsed_output)){
     dir.create(path_parsed_output)
   }
-  path_file_info = paste0(path_parsed_output, '/parsed_file_info.yaml')
+  path_file_info = paste0(path_parsed_output, '/parsed_vcf_info.yaml')
   path_file_snv = paste0(path_parsed_output, '/parsed_snv.tsv')
   path_file_complete = paste0(path_parsed_output, '/parsed_complete.tsv')
   path_file_cnv = paste0(path_parsed_output, '/parsed_cnv.tsv')

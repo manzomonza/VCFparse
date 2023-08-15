@@ -23,7 +23,7 @@ print(opt$file)
 vcfpath = opt$file
 
 ## Retrieve dirname and generate filepaths
-filepaths = generate_paths(vcfpath = vcfpath)
+filepaths = parsed_filepaths(outputpath)
 
 
 ## Read in file
