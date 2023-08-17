@@ -58,12 +58,12 @@ parse_vcfpath_return_metainformation = function(vcfpath){
 #' @export
 #'
 #' @examples
-write_parsed_fp_txt = function(parsed_fp){
+write_parsed_fp_txt = function(parsed_fp, vcf_file, analysis_name){
   parsed_fp = lapply(parsed_fp, function(x) ifelse(file.exists(x), x, NA))
   filepath_df = data.frame(file = names(parsed_fp),
                            filepath  = unlist(unname(parsed_fp)))
   filepath_df = attach_ID(filepath_df, vcf_file = vcf_file, analysis_name = analysis_name)
-  readr::write_tsv(filepath_df, parsed_fp$parsed_fp)
+  readr::write_tsv(filepath_df, file = parsed_fp$parsed_fp)
 }
 
 

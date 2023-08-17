@@ -32,5 +32,5 @@ write_parsed_output = function(vcf, vcf_path, parsed_fp){
   write_out_META_information(metainf, filename = parsed_fp$parsed_info)
 
   ## Parsed filepath info
-  write_parsed_fp_txt(parsed_fp)
+  write_parsed_fp_txt(parsed_fp, vcf_file = vcf_file, analysis_name = analysis_name)
 }
