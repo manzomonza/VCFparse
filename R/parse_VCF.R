@@ -32,8 +32,8 @@ parse_vcf_return_cnv = function(vcf){
     cnv_rows = cnv_parse(cnv_rows)
     cnv_rows = dplyr::select(cnv_rows, -origPos)
     cnv_rows = dplyr::arrange(cnv_rows, desc(RAW_CN))
-    return(cnv_rows)
   }
+    return(cnv_rows)
 }
 
 #' Parse VCF -- create CNV

@@ -3,8 +3,6 @@ library(VCFparse)
 library(VariantAnnotation)
 library(yaml)
 
-print("Packages: loaded")
-
 
 ################################################# OPTPARSE
 # library(optparse)
