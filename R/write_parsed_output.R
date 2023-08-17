@@ -9,7 +9,7 @@
 #'
 #' @examples
 write_parsed_output = function(vcf, vcf_path, parsed_fp){
-  metainf = parse_vcfpath_return_metainformation(vcfpath)
+  metainf = parse_vcfpath_return_metainformation(vcf_path)
   analysis_name = metainf$IonReporter$AnalysisName
   vcf_file = basename(vcf_path)
   ## Output files
