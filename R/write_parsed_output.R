@@ -14,8 +14,8 @@ write_parsed_output = function(vcf, vcf_path, parsed_fp){
   vcf_file = basename(vcf_path)
   ## Output files
   if(nrow(vcf) > 0){
-    vcf = attach_ID(vcf, vcf_file = vcf_file, analysis_name = analysis_name)
-    readr::write_tsv(vcf, file = parsed_fp$parsed_complete)
+    vcf_w = attach_ID(vcf, vcf_file = vcf_file, analysis_name = analysis_name)
+    readr::write_tsv(vcf_w, file = parsed_fp$parsed_complete)
   }
   snv = parse_vcf_return_snv(vcf)
   if(nrow(snv) > 0){
