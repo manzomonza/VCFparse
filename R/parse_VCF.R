@@ -59,7 +59,7 @@ parse_vcfpath_return_metainformation = function(vcfpath){
 #'
 #' @examples
 write_parsed_fp_txt = function(parsed_fp, vcf_file, analysis_name){
-  parsed_fp = lapply(parsed_fp, function(x) ifelse(file.exists(x), x, NA))
+  parsed_fp[1:5] = lapply(  parsed_fp[1:5], function(x) ifelse(file.exists(x), x, NA))
   filepath_df = data.frame(file = names(parsed_fp),
                            filepath  = unlist(unname(parsed_fp)))
   filepath_df = attach_ID(filepath_df, vcf_file = vcf_file, analysis_name = analysis_name)

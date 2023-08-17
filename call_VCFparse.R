@@ -71,7 +71,7 @@ write_out_META_information(metainf, filename = parsed_fp$parsed_info)
 
 print("filepaths file")
 ## Parsed filepath info
-write_parsed_fp_txt(parsed_fp, vcf_file = vcf_file, analysis_name = analysis_name)
+write_parsed_fp_txt(parsed_fp, vcf_file = 'no1cares', analysis_name = 'no1cares')
 
 
 
