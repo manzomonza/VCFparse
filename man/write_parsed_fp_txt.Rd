@@ -4,7 +4,7 @@
 \alias{write_parsed_fp_txt}
 \title{Write out parsed filepath information}
 \usage{
-write_parsed_fp_txt(parsed_fp)
+write_parsed_fp_txt(parsed_fp, vcf_file, analysis_name)
 }
 \arguments{
 \item{parsed_fp}{}
