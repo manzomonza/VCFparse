@@ -7,7 +7,7 @@
 #'
 #' @examples
 remove_multientry_leftover_characters = function(tableofinterest){
-  check_cols = tableofinterest
+  check_cols = colnames(tableofinterest)
   for (col in check_cols){
     tableofinterest[[col]] = gsub("\\[|\\{|\\}|\\]", '', tableofinterest[[col]])
   }
