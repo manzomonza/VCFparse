@@ -15,9 +15,11 @@ write_parsed_output = function(vcf, vcf_path, parsed_fp){
   ## Output files
   if(nrow(vcf) > 0){
     vcf_w = attach_ID(vcf, vcf_file = vcf_file, analysis_name = analysis_name)
+    vcf_w = remove_multientry_leftover_characters(vcf_w)
     readr::write_tsv(vcf_w, file = parsed_fp$parsed_complete)
   }
   snv = parse_vcf_return_snv(vcf)
+  snv = remove_multientry_leftover_characters(snv)
   if(nrow(snv) > 0){
     snv = attach_ID(snv, vcf_file = vcf_file, analysis_name = analysis_name)
     readr::write_tsv(snv, file = parsed_fp$parsed_snv)

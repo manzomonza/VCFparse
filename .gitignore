@@ -1,4 +1,6 @@
+testfiles/*
 *.Rhistory
+.Rhistory
 *.Rproj
 .DS_Store
 VCF/*
