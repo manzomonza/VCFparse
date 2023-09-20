@@ -73,4 +73,3 @@ index_all_cols = function(datadf, index_pos){
                                                                                 vector_indeces = index_pos)))
   return(res)
 }
-

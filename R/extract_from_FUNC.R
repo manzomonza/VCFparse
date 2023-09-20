@@ -117,6 +117,46 @@ extract_FUNC_origPos = function(character_vector){
   }
 }
 
+#' Extract origRef information from FUNC vcf field
+#'
+#' @param character_vector
+#'
+#' @return
+#' @export
+#'
+#' @examples
+extract_FUNC_origRef = function(character_vector){
+  string_oi = grep("origRef:", character_vector, value = TRUE)
+  if(identical(string_oi, character(0))){
+    return(NA)
+  }else{
+    #string_oi = gsub("'","",string_oi)
+    string_oi = stringr::str_remove(string_oi, pattern = "origRef:")
+    return(string_oi)
+  }
+}
+
+#' Extract origAlt information from FUNC vcf field
+#'
+#' @param character_vector
+#'
+#' @return
+#' @export
+#'
+#' @examples
+extract_FUNC_origAlt = function(character_vector){
+  string_oi = grep("origAlt:", character_vector, value = TRUE)
+  if(identical(string_oi, character(0))){
+    return(NA)
+  }else{
+    #string_oi = gsub("'","",string_oi)
+    string_oi = stringr::str_remove(string_oi, pattern = "origAlt:")
+    return(string_oi)
+  }
+}
+
+
+
 
 
 #' Extract location information from FUNC vcf field
@@ -194,6 +234,8 @@ FUNC_extracts_to_df = function(character_vector){
   location = extract_FUNC_location(character_vector)
   exon = extract_FUNC_exon(character_vector)
   origPos = extract_FUNC_origPos(character_vector)
+  origRef = extract_FUNC_origRef(character_vector)
+  origAlt = extract_FUNC_origAlt(character_vector)
   funct = extract_FUNC_funct(character_vector)
   res_df = data.frame(gene = gene,
                 transcript = transcript,
@@ -202,7 +244,9 @@ FUNC_extracts_to_df = function(character_vector){
                 protein = protein,
                 location = location,
                 exon = exon,
-                origPos = origPos)
+                origPos = origPos,
+                origRef = origRef,
+                origAlt = origAlt)
   return(res_df)
 }
 
