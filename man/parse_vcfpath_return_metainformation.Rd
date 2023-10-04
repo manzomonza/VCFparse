@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_VCF.R
 \name{parse_vcfpath_return_metainformation}
 \alias{parse_vcfpath_return_metainformation}
-\title{Parse VCF -- create CNV}
+\title{Parse VCF - return META}
 \usage{
 parse_vcfpath_return_metainformation(vcfpath)
 }
@@ -10,5 +10,5 @@ parse_vcfpath_return_metainformation(vcfpath)
 \item{vcf}{}
 }
 \description{
-Parse VCF -- create CNV
+Parse VCF - return META
 }
