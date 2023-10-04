@@ -1,4 +1,4 @@
-#' Parse VCF -- create SNV
+#' Parse VCF -- return SNV rows
 #'
 #' @param vcf
 #'
@@ -18,7 +18,7 @@ parse_vcf_return_snv = function(vcf){
 }
 
 
-#' Parse VCF -- create CNV
+#' Parse VCF -- return CNV rows
 #'
 #' @param vcf
 #'
@@ -27,7 +27,7 @@ parse_vcf_return_snv = function(vcf){
 #'
 #' @examples
 parse_vcf_return_cnv = function(vcf){
-  cnv_rows = dplyr::filter(vcf, alt == "<CNV>")
+  cnv_rows = dplyr::filter(vcf, alt == "CNV")
   if(nrow(cnv_rows) > 0){
     cnv_rows = cnv_parse(cnv_rows)
     cnv_rows = dplyr::select(cnv_rows, -origPos)
