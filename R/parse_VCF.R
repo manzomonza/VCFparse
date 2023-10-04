@@ -36,7 +36,7 @@ parse_vcf_return_cnv = function(vcf){
     return(cnv_rows)
 }
 
-#' Parse VCF -- create CNV
+#' Parse VCF - return META
 #'
 #' @param vcf
 #'
@@ -65,13 +65,3 @@ write_parsed_fp_txt = function(parsed_fp, vcf_file, analysis_name){
   filepath_df = attach_ID(filepath_df, vcf_file = vcf_file, analysis_name = analysis_name)
   readr::write_tsv(filepath_df, file = parsed_fp$parsed_fp)
 }
-
-
-
-
-
-
-
-
-
-

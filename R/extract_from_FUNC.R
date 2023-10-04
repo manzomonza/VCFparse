@@ -155,10 +155,6 @@ extract_FUNC_origAlt = function(character_vector){
   }
 }
 
-
-
-
-
 #' Extract location information from FUNC vcf field
 #'
 #' @param character_vector
