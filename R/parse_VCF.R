@@ -30,8 +30,7 @@ parse_vcf_return_cnv = function(vcf){
   cnv_rows = dplyr::filter(vcf, alt == "<CNV>")
   if(nrow(cnv_rows) > 0){
     cnv_rows = cnv_parse(cnv_rows)
-    cnv_rows = dplyr::select(cnv_rows, -origPos)
-    cnv_rows = dplyr::arrange(cnv_rows, desc(RAW_CN))
+    cnv_rows = dplyr::arrange(cnv_rows, desc(CN))
   }
     return(cnv_rows)
 }

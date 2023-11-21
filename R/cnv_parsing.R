@@ -10,7 +10,7 @@
 #'
 #' @examples
 cnv_parse = function(cnv_rows){
-  cnv_rows = dplyr::select(cnv_rows, seqnames, gene, origPos, NUMTILES, CI, RAW_CN)
+  cnv_rows = dplyr::select(cnv_rows, seqnames, gene, NUMTILES, CI, CN, PVAL)
   cnv_rows = dplyr::distinct(cnv_rows)
   cnv_rows = tidyr::unnest(cnv_rows, CI)
   cnv_rows$CI = paste0('perc_',cnv_rows$CI)
