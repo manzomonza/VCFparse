@@ -40,19 +40,7 @@ parse_vcf_return_cnv = function(vcf){
     return(cnv_rows)
 }
 
-#' Parse VCF - return META
-#'
-#' @param vcf
-#'
-#' @return
-#' @export
-#'
-#' @examples
-parse_vcfpath_return_metainformation = function(vcfpath){
-  cm = vcf_comment_section(vcfpath = vcfpath )
-  metainf = aggregate_META_information(cm)
-  return(metainf)
-}
+
 
 #' Write out parsed filepath information
 #'

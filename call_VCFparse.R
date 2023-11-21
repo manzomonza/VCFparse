@@ -30,8 +30,8 @@ file_nrw_write = function(table_obj, filestring){
   }
 }
 
-
-metainf = parse_vcfpath_return_metainformation(vcfpath)
+cm = vcf_comment_section(vcfpath = vcfpath )
+metainf = aggregate_META_information(cm)
 analysis_name = metainf$IonReporter$AnalysisName
 vcf_file = basename(vcfpath)
 
