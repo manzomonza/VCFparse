@@ -19,10 +19,16 @@ path_parsed_output = paste0(analysis_dir, "/parsed_output") # analysis_dir gets 
 if(!dir.exists(path_parsed_output)){
   dir.create(path_parsed_output)
 }
+path_snv = paste0(path_parsed_output, '/parsed_snv.tsv')
+path_complete = paste0(path_parsed_output, '/parsed_complete.tsv')
+path_fusions = paste0(path_parsed_output, '/parsed_fusions.tsv') # not implemented yet
+path_yaml = paste0(path_parsed_output, '/parsed_vcf_info.yaml')
 
-# parsed_fusions = paste0(path_parsed_output, '/parsed_fusions.tsv') # not implemented yet
-
-
+file_nrw_write = function(table_obj, filestring){
+  if(nrow(table_obj) > 0){
+    readr::write_tsv(table_obj, file = filestring)
+  }
+}
 
 
 metainf = parse_vcfpath_return_metainformation(vcfpath)
@@ -30,24 +36,25 @@ analysis_name = metainf$IonReporter$AnalysisName
 vcf_file = basename(vcfpath)
 
 ## Output files
-if(nrow(vcf) > 0){
-  vcf_w = attach_ID(vcf, vcf_file = vcf_file, analysis_name = analysis_name)
-  vcf_w = remove_multientry_leftover_characters(vcf_w)
-  readr::write_tsv(vcf_w, file = paste0(path_parsed_output, '/parsed_complete.tsv'))
-}
+vcf_w = attach_ID(vcf, vcf_file = vcf_file, analysis_name = analysis_name)
+vcf_w = remove_multientry_leftover_characters(vcf_w)
+file_nrw_write(vcf_w, filestring = path_complete)
+
 snv = parse_vcf_return_snv(vcf)
 snv = remove_multientry_leftover_characters(snv)
 if(nrow(snv) > 0){
   snv = attach_ID(snv, vcf_file = vcf_file, analysis_name = analysis_name)
-  readr::write_tsv(snv, file = paste0(path_parsed_output, '/parsed_snv.tsv'))
 }
+file_nrw_write(snv, filestring = path_snv)
+
+
 cnv = parse_vcf_return_cnv(vcf)
 if(nrow(cnv) > 0){
   cnv = attach_ID(cnv, vcf_file = vcf_file, analysis_name = analysis_name)
-  readr::write_tsv(cnv, file = paste0(path_parsed_output, '/parsed_cnv.tsv'))
 }
+file_nrw_write(cnv, filestring = path_cnv)
 
 ## Meta information
-write_out_META_information(metainf, filename = paste0(path_parsed_output, '/parsed_vcf_info.yaml'))
-
+out_yaml = as.yaml(metainf)
+yaml::write_yaml(out_yaml, file = path_yaml)
 
