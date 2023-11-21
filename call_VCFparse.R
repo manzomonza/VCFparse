@@ -24,14 +24,24 @@ path_complete = paste0(path_parsed_output, '/parsed_complete.tsv')
 path_fusions = paste0(path_parsed_output, '/parsed_fusions.tsv') # not implemented yet
 path_yaml = paste0(path_parsed_output, '/parsed_vcf_info.yaml')
 
+
+
+
+
+## File write function
 file_nrw_write = function(table_obj, filestring){
   if(nrow(table_obj) > 0){
     readr::write_tsv(table_obj, file = filestring)
   }
 }
+## Meta information
 
 cm = vcf_comment_section(vcfpath = vcfpath )
 metainf = aggregate_META_information(cm)
+out_yaml = as.yaml(metainf)
+yaml::write_yaml(out_yaml, file = path_yaml)
+
+## Extract info
 analysis_name = metainf$IonReporter$AnalysisName
 vcf_file = basename(vcfpath)
 
@@ -47,14 +57,10 @@ if(nrow(snv) > 0){
 }
 file_nrw_write(snv, filestring = path_snv)
 
-
 cnv = parse_vcf_return_cnv(vcf)
 if(nrow(cnv) > 0){
   cnv = attach_ID(cnv, vcf_file = vcf_file, analysis_name = analysis_name)
 }
 file_nrw_write(cnv, filestring = path_cnv)
 
-## Meta information
-out_yaml = as.yaml(metainf)
-yaml::write_yaml(out_yaml, file = path_yaml)
 

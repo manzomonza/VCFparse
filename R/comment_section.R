@@ -89,22 +89,6 @@ aggregate_META_information = function(comment_section){
   return(meta_info)
 }
 
-
-#' WRITE OUT meta information from VCF comment section to yaml
-#'
-#' @param meta_information
-#' @param basedir
-#'
-#' @return
-#' @export
-#'
-#' @examples
-write_out_META_information = function(meta_information, filename){
-  out = as.yaml(meta_information)
-  yaml::write_yaml(out, file = filename)
-}
-
-
 #' Attach sample ID from original vcf path and analysis name to output dataframes.
 #' These entries serve as unique identifiers across tables
 #' @param dataframe_oi
