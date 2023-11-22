@@ -20,6 +20,7 @@ if(!dir.exists(path_parsed_output)){
   dir.create(path_parsed_output)
 }
 path_snv = paste0(path_parsed_output, '/parsed_snv.tsv')
+path_cnv = paste0(path_parsed_output, '/parsed_cnv.tsv')
 path_complete = paste0(path_parsed_output, '/parsed_complete.tsv')
 path_fusions = paste0(path_parsed_output, '/parsed_fusions.tsv') # not implemented yet
 path_yaml = paste0(path_parsed_output, '/parsed_vcf_info.yaml')
